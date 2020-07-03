@@ -1,0 +1,154 @@
+<html>
+    <style>
+                    
+@import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic);
+@import url(//fonts.googleapis.com/css?family=Kaushan+Script);
+html,
+body {
+  overflow-x: hidden!important;
+  font-family: 'Source Sans Pro', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100%;
+  background: #f9f9f9;
+  color: #666666;
+}
+a {
+  color: #3c8dbc;
+}
+a:hover,
+a:active,
+a:focus {
+  outline: none;
+  text-decoration: none;
+  color: #72afd2;
+}
+/* Layouts */
+.wrapper {
+  min-height: 100%;
+}
+.wrapper:before,
+.wrapper:after {
+  display: table;
+  content: " ";
+}
+/* Change the color of the striped tables */
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
+/*  background-color: #f3f4f5;*/
+}
+.table.no-border,
+.table.no-border td,
+.table.no-border th {
+  border: 0;
+}
+/* .text-center in tables */
+table.text-center,
+table.text-center td,
+table.text-center th {
+  text-align: center;
+}
+.table.align th {
+  text-align: left;
+}
+.table.align td {
+  text-align: right;
+}
+
+.regular-checkbox {
+	display: none;
+}
+
+.regular-checkbox + label {
+	background-color: #fafafa;
+	border: 1px solid #cacece;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+	padding: 9px;
+	border-radius: 3px;
+	display: inline-block;
+	position: relative;
+}
+
+.regular-checkbox + label:active, .regular-checkbox:checked + label:active {
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+}
+
+.regular-checkbox:checked + label {
+	background-color: #e9ecee;
+	border: 1px solid #adb8c0;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+	color: #99a1a7;
+}
+
+.regular-checkbox:checked + label:after {
+	content: '\2714';
+	font-size: 14px;
+	position: absolute;
+	top: 0px;
+	left: 3px;
+	color: #99a1a7;
+}
+
+
+.big-checkbox + label {
+	padding: 18px;
+}
+
+.big-checkbox:checked + label:after {
+	font-size: 28px;
+	left: 6px;
+}
+    </style>
+<head>
+<meta charset="utf-8">
+<title>Select all</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+</head>
+ 
+<body>
+  
+<table class="table-responsive table-striped" cellpadding="5px">
+<tr>
+<th><input type="checkbox" id="selectall" class="regular-checkbox" /><label for="selectall">Week</th>
+
+
+<td width="20" align="center"><input type="checkbox" name="name" class="regular-checkbox name" value="1" id="checkbox-1-1" /><label for="checkbox-1-1">Mon</label></td>
+
+
+<td align="center"><input type="checkbox" name="name" class="regular-checkbox name" value="2" id="checkbox-1-2" /><label for="checkbox-1-2">Tue</label></td>
+
+
+<td align="center"><input type="checkbox" name="name" class="regular-checkbox name" value="3" id="checkbox-1-3" /><label for="checkbox-1-3">Wed</label></td>
+
+
+<td align="center"><input type="checkbox" name="name" class="regular-checkbox name" value="4" id="checkbox-1-4" /><label for="checkbox-1-4">Thu</label></td>
+
+
+<td align="center"><input type="checkbox" name="name" class="regular-checkbox name" value="5" id="checkbox-1-5" /><label for="checkbox-1-5">Fri</label></td>
+
+</tr>
+</table>
+    
+    <script>
+        
+    $(function () {
+        // add multiple select / deselect functionality
+        $("#selectall").click(function () {
+            $('.name').attr('checked', this.checked);
+        });
+ 
+        // if all checkbox are selected, then check the select all checkbox
+        // and viceversa
+        $(".name").click(function () {
+ 
+            if ($(".name").length == $(".name:checked").length) {
+                $("#selectall").attr("checked", "checked");
+            } else {
+                $("#selectall").removeAttr("checked");
+            }
+ 
+        });
+    });
+    </script>
+
+</body>
+</html>

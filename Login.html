@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+    body {
+    background-color: lightblue;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.logo {
+    width: 100%;
+    font-family: cursive;
+    padding: 10px;
+}
+
+.logo1 {
+    padding-left: 0px;
+}
+
+.logo2 {
+    padding: 15px;
+    padding-left: 0px;
+}
+
+.tag {
+    color: white;
+}
+
+.menutheme {
+    font-family: arial;
+    font-size: 15px;
+    color: white;
+    text-align: center;
+    width: 20%;
+/*    background-color: rgba(255, 255, 255, 1);*/
+}
+/*
+.menutheme:hover {
+    background-color: rgba(0, 0, 0, 0);
+}*/
+
+a {
+    text-decoration: none;
+}
+
+.signup,
+.signup1 {
+    float: left;
+}
+
+.signup {
+    width: 48%;
+    box-shadow: none;
+    padding: 10px 10px;
+    border: 1px solid #dfdfdf;
+    margin: 20px 0px 10px 0px;
+}
+
+.signup.pr {
+    float: right;
+}
+
+.signup1 {
+    width: 100%;
+    box-shadow: none;
+    background-color: transparent;
+    padding: 10px 10px;
+    border: 1px solid #dfdfdf;
+    margin: 0px 0px 10px;
+}
+
+.submitbutton {
+    border-radius: 2px;
+    color: #fff;
+    background: #10609e;
+    font-size: 15px;
+    width: 100%;
+    float: left;
+    border: none;
+    text-align: center;
+    padding: 10px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+    padding-left: 450px;
+}
+
+.overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.formmove {
+    width: 100%;
+    text-align: center;
+}
+
+.content {
+    width: 500px;
+    display: inline-block;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 1px 1px #444444;
+}
+
+form {
+
+    padding-top: 10%;
+    margin: 0 auto;
+
+}
+
+.formmove .textcolor {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    float: left;
+    font-size: 12px;
+}
+
+.signup-tab {
+    width: 50%;
+    text-decoration: none;
+    font-size: 15px;
+    font-family: sans-serif;
+    text-align: center;
+    cursor: pointer;
+}
+
+.signup-active .signup-tab {
+    background: #10609e;
+    color: white;
+}
+
+.login-active .login-tab {
+    background: #10609e;
+    color: white;
+}
+
+.login-tab {
+    width: 50%;
+    text-decoration: none;
+    font-size: 15px;
+    font-family: sans-serif;
+    text-align: center;
+    cursor: pointer;
+}
+
+.signup-active .login-form {
+    display: none;
+}
+
+.login-active .signup-form {
+    display: none;
+}
+
+.login-active table {
+    margin-bottom: 20px;
+}
+    </style>
+<head>
+    <meta charset="utf-8">
+    <title>Milkman</title>
+    <link rel="stylesheet" media="all" href="css/login.css" />
+</head>
+
+<body>
+
+    <header class="logo">
+        <div class='colorback'>
+          <table width="100%">
+                    <tr>
+                        <td class="logo1" width="5%"><h1 class="tag"><img src="img/milk2.jpg"></td>
+                        <td class="logo2" width="5%"><h1 class="tag"><img src="img/mil.png"></h1></td>
+                        <td style="padding-left: 35vw;">
+                            <table  width="100%">
+                                <tr align="center">
+                                    <td class="menutheme"><a href='home.html'><b>Home</b></a></td>
+<!--                    <td class ="menutheme" width="20%"><a href="#"><b>About</b></a></td>-->
+                    <td class="menutheme"><a href="product.html"><b>Product</b></a></td>
+                    <td class="menutheme"><a href="#"><b>Schedule</b></a></td>
+                    <td class="menutheme"><a href="login.html"><b>Login</b></a></td>
+                                </tr>
+                            </table>
+                        </td>
+                        </tr>
+           </table>
+        </div>
+    </header>
+
+    
+        <div class="formmove">
+            <div class='content signup-active'>
+                <table border="1" width="100%">
+                    <tr>
+                        <td class="signup-tab">SIGNUP</td>
+                        <td class="login-tab">LOGIN</td>
+                    </tr>
+                </table>
+                
+                <div class="signup-form">
+                    <form action="signup" method="post">
+                     
+                    <input class="signup pl" type="text" placeholder="First Name" name="firstid" required>
+                    <input class="signup pr" type="text" placeholder="Last Name" name="lastid" required>
+                    <input class="signup1" type="email" placeholder="Email Address" name="emailid" required>
+                    <input class="signup1" type="password" placeholder="Password" name="passwordid" required>
+                    <label class='textcolor'><input type="checkbox" required>I hereby declare all above information is
+                        correct</label>
+                    <input class=submitbutton type="submit" value="Get Started">
+                    </form>
+
+                </div>
+                <div class="login-form">
+                <form action="login" method="post">
+                    <input class="signup1" type="email" placeholder="Email Address" name="emailid" required>
+                    <input class="signup1" type="password" placeholder="Password" name="passwordid" required>
+                    <input class=submitbutton type="submit" value="Login">
+                </div>
+                     </form>
+            </div>
+
+        </div>
+   
+   
+    <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="application/javascript" src="main.js"></script>
+</body>
+
+</html>

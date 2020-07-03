@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple Markers</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 425px;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+      function initMap() {
+          
+        var myLatLng = {lat: 22.825, lng: 75.849};
+        var myLatLng2 = {lat: 22.721, lng: 75.866};
+        var myLatLng3 = {lat: 22.737, lng: 75.889};
+        var myLatLng4 = {lat: 22.724, lng: 75.886};
+        var myLatLng5 = {lat: 21.724, lng: 76.886};
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 8,
+          center: myLatLng
+        });
+        
+        
+        
+          var contentString1 = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">Sagar Doodh Dahi</h1>'+
+            '<div id="bodyContent">'+
+            
+            '(Maze lo at dodar.).</p>'+
+            '</div>'+
+            '</div>';
+
+        var infowindow1 = new google.maps.InfoWindow({
+          content: contentString1
+        });
+        
+        
+              
+        
+          var contentString = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">Patidar Tasildar</h1>'+
+            '<div id="bodyContent">'+
+            
+            '(last visited June 22, 2009).</p>'+
+            '</div>'+
+            '</div>';
+
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+        
+        
+        
+        
+//        var i;
+//        for(i=0; i<=5; i++){
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          title: 'marker1'
+        
+        });
+          var marker2 = new google.maps.Marker({
+          position: myLatLng2,
+          map: map,
+          title: 'marker2'
+        
+        });
+          var marker3 = new google.maps.Marker({
+          position: myLatLng3,
+          map: map,
+          title: 'Hello World!'
+        
+        });
+          var marker4 = new google.maps.Marker({
+          position: myLatLng4,
+          map: map,
+          title: 'Hello World!'
+        
+        });
+          var marker5 = new google.maps.Marker({
+          position: myLatLng5,
+          map: map,
+          title: 'Hello World!'
+        
+        });
+//        myLatLng.lat = myLatLng.lat+1;
+//    }
+
+       marker.addListener('click', function() {
+          infowindow1.open(map, marker);
+        });
+        
+         marker2.addListener('click', function() {
+          infowindow.open(map, marker2);
+        });
+        
+         marker5.addListener('click', function() {
+          infowindow.open(map, marker5);
+        });
+        
+    
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBH-MFFqzo5u3bNLajVzJXAyh358x6VqpI&callback=initMap">
+    </script>
+  </body>
+</html>

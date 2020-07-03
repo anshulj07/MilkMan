@@ -1,0 +1,667 @@
+<!--<html>
+    <style>
+       body{background-image: url("carpool.png");} 
+#countdown p {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  color: white;
+  height: 5vw;
+}
+#countdown .canvas-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 440px;
+  margin: 0 auto;
+  color: white;
+  
+}
+
+@media (max-width:500px){
+  #countdown .canvas-container { max-width: 220px; }
+  #countdown canvas:nth-child(-n+2) { margin-bottom: 10px; }
+}
+.coming
+{
+    padding-top: 50px;
+    font-family: monospace;
+    
+}
+.size
+{
+    font-size: 500px;
+}
+
+
+
+/*image hover
+
+.wrapper {
+    padding: 50px 50px;
+    max-width: 1200px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+		margin-top: 80px;
+}
+
+.right {float: right !important;}
+ Image zoom on hover + Overlay colour 
+.parent {
+    width: 100%;
+    margin: 20px;
+    height: 300px;
+    border: 1px solid blue;
+    overflow: hidden;
+    position: relative;
+    float: left;
+    display: inline-block;
+	cursor: pointer;
+}
+
+.child {
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
+}
+
+ Several different images 
+.bg-one {background-image: url(carpool.png);}
+
+
+
+a {
+    display: none;
+    font-size: 35px;
+    color: #ffffff !important;
+    font-family: sans-serif;
+    text-align: center;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 50px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.parent:hover .child, .parent:focus .child {
+    -ms-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+.parent:hover .child:before, .parent:focus .child:before {
+    display: block;
+}
+
+.parent:hover a, .parent:focus a {
+    display: block;
+}
+
+.child:before {
+    content: "";
+    display: none;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(52,73,94,0.75);
+}*/
+
+/*play button*/
+
+/*
+.video-wrapper {
+    position: relative;
+}
+
+.video-wrapper > video {
+    width: 100%;
+    vertical-align: middle;
+}
+
+.video-wrapper > video.has-media-controls-hidden::-webkit-media-controls {
+    display: none;
+}
+
+.video-overlay-play-button {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 10px calc(50% - 50px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    opacity: 0.95;
+    cursor: pointer;
+    background-image: linear-gradient(transparent, #000);
+    transition: opacity 150ms;
+}
+
+.video-overlay-play-button:hover {
+    opacity: 1;
+}
+
+.video-overlay-play-button.is-hidden {
+    display: none;
+}*/
+
+.park
+{
+   padding-left: 42vw;
+    width: 25%;
+}
+
+
+        </style>
+        <body>
+                            
+            
+            
+            
+    <div class="wrapper">
+	<div class="parent" onclick="">
+		<div class="child bg-one">
+			
+                   <div class="coming" id="countdown" data-minutes-left="20" data-reset-delay="5">
+                    <p class="size"><strong>Coming Soon...</strong></br></p>
+                    <div class="canvas-container" >
+                    <canvas id="days"></canvas>
+                     <canvas id="hours"></canvas>
+                    <canvas id="minutes"></canvas>
+                        <canvas id="seconds"></canvas>
+                     </div>
+                     </div>
+<div class="park">
+    <h1 class="tag"><img src="parking.jpg">
+</div>
+
+                        
+		</div>
+        </div>
+    </div>
+            
+            <div class="video-wrapper">
+    <video src="//clips.vorwaerts-gmbh.de/VfE_html5.mp4"></video>
+</div>
+	
+            <script>
+        
+        var countdown = document.getElementById('countdown');
+var endDate = countdown.dataset.date || '2019-10-31';
+var endTime = countdown.dataset.time || '00:00:00';
+var endCountdown = new Date(endDate + 'T' + endTime);
+var timer;
+var specs = {
+  'radius': 50,
+  'centerX': 50,
+  'centerY': 50,
+  'thickness': 8,
+  'offset': -Math.PI/2,
+  'color': '#f00',
+  'bgColor': '#ccc',
+  'idFont': 'small-caps 400 10px Verdana',
+  'valueFont': 'bold 40px monospace',
+  'fontColor': '#ffffff'
+};
+var time = {
+  'millisecond': 1000,
+  'second': 60,
+  'minute': 60,
+  'hour': 24,
+  'day': 365
+}
+var info = {};
+
+
+// canvas init
+var canvasElements = Array.prototype.slice.call(document.querySelectorAll('canvas'));
+var canvasCtx = [];
+canvasElements.forEach( function(canvas, index) {
+  canvas.width = specs.centerX * 2;
+  canvas.height = specs.centerY * 2;
+  canvasCtx[index] = canvas.getContext('2d');
+  var name = canvas.id;
+  info[name] = {'ctx': index, 'value': 0, 'prevValue': -1};
+});
+var canvasKeys = Object.keys(info);
+info.days.denominator = time.day;
+info.hours.denominator = time.hour;
+info.minutes.denominator = time.minute;
+info.seconds.denominator = time.second;
+
+// show remaining time
+function showRemainingTime() {
+  var now = new Date();
+  
+  // calculate new values
+  var secondsLeft = Math.max(0, Math.floor((endCountdown - now)/1000));
+  info.days.value = Math.floor(secondsLeft / (time.second*time.minute*time.hour));
+  info.hours.value = Math.floor((secondsLeft % (time.second*time.minute*time.hour)) / (time.second*time.minute));
+  info.minutes.value = Math.floor((secondsLeft % (time.second*time.minute)) / time.second);
+  info.seconds.value = Math.floor(secondsLeft % time.second);
+  
+  // update changed values only
+  canvasKeys.forEach( function(key) {
+    if(info[key].value !== info[key].prevValue){
+      if(key === 'days' && info[key].value > 365) {
+        // exception if days is more than 1 year
+        draw(canvasCtx[info[key].ctx], 1, key, info[key].value);
+      } else {
+        draw(canvasCtx[info[key].ctx], info[key].value/info[key].denominator, key, info[key].value);
+      }
+      info[key].prevValue = info[key].value;
+    }
+  });
+}
+
+// draw function
+function draw(ctx, part, id, value) {
+  // calculate angles
+  var start = specs.offset;
+  var between = 2 * Math.PI * part + specs.offset;
+  var end = 2 * Math.PI + specs.offset;
+  
+  // clear canvas
+  ctx.clearRect(0, 0, specs.centerX * 2, specs.centerY * 2);
+  
+  // draw remaining %
+  ctx.fillStyle = specs.color;
+  ctx.beginPath();
+  ctx.arc(specs.centerX, specs.centerY, specs.radius, start, between);
+  ctx.arc(specs.centerX, specs.centerY, specs.radius - specs.thickness, between, start, true);
+  ctx.closePath();
+  ctx.fill();
+
+  // draw bg
+  ctx.fillStyle = specs.bgColor;
+  ctx.beginPath();
+  ctx.arc(specs.centerX, specs.centerY, specs.radius, between, end);
+  ctx.arc(specs.centerX, specs.centerY, specs.radius - specs.thickness, end, between, true);
+  ctx.closePath();
+  ctx.fill();
+  
+  // draw text
+  ctx.fillStyle = specs.fontColor;
+  ctx.font = specs.idFont;
+  ctx.fillText(id, specs.radius - ctx.measureText(id).width/2, specs.thickness*3);
+  ctx.font = specs.valueFont;
+  ctx.fillText(value, specs.radius - ctx.measureText(value).width/2, specs.radius*2 - specs.thickness*3);
+}
+
+// change countdown every second
+timer = setInterval(showRemainingTime, 1000);
+        
+        
+        
+        
+        
+ //play botton
+// 
+// var videoPlayButton,
+//	videoWrapper = document.getElementsByClassName('video-wrapper')[0],
+//    video = document.getElementsByTagName('video')[0],
+//    videoMethods = {
+//        renderVideoPlayButton: function() {
+//            if (videoWrapper.contains(video)) {
+//				this.formatVideoPlayButton()
+//                video.classList.add('has-media-controls-hidden')
+//                videoPlayButton = document.getElementsByClassName('video-overlay-play-button')[0]
+//                videoPlayButton.addEventListener('click', this.hideVideoPlayButton)
+//            }
+//        },
+//
+//        formatVideoPlayButton: function() {
+//            videoWrapper.insertAdjacentHTML('beforeend', '\
+//                <svg class="video-overlay-play-button" viewBox="0 0 200 200" alt="Play video">\
+//                    <circle cx="100" cy="100" r="90" fill="none" stroke-width="15" stroke="#fff"/>\
+//                    <polygon points="70, 55 70, 145 145, 100" fill="#fff"/>\
+//                </svg>\
+//            ');
+//        },
+//
+//        hideVideoPlayButton: function() {
+//            video.play()
+//            videoPlayButton.classList.add('is-hidden')
+//            video.classList.remove('has-media-controls-hidden')
+//            video.setAttribute('controls', 'controls')
+//        }
+//	}
+//
+//videoMethods.renderVideoPlayButton()
+//        
+                </script>
+            </body>
+            
+</html>-->
+
+<html>
+    <style>
+   
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: black
+      }
+        
+        
+        body {
+           margin: 0;
+           font-size: 14px;
+        }
+  
+        * {
+    box-sizing: border-box;
+}
+        .backtheme
+        {
+            width: 100%;
+/*            background: url('sky2.jpg');*/
+            height: 100vh;
+            background-repeat: no-repeat;
+        }
+        .nav
+        {
+            width: 100%;
+            height: 10vh;
+            
+            
+        }
+        .menu
+        {
+/*            width: 100%;*/
+        }
+        .menutheme
+        {
+            width: 25%;
+            font-size: 20px;
+            height: 15vh;
+            text-align: center;
+            color: white;
+        }
+        a
+        {
+            text-decoration: none;
+        }
+        .logo1 {
+            padding-left: 50px;
+            padding-top: 10px;
+        }
+     
+        .designlogin {
+/*    background: #ffffff;*/
+    background-repeat: no-repeat;
+    padding: 10px;
+    padding-left: 150px;
+    border-radius: 5px;
+    height: 2vh;
+}
+form {
+    width: 0%;
+    margin: 0 auto;
+}
+
+.textstyle
+{
+    font-family: cursive;
+    font-size: 40px;
+    color: white;
+    padding-top: 50px;
+    padding-left: 100px;
+}
+
+.textstyle1
+{
+    font-family: cursive;
+    font-size: 20px;
+    color: white;
+    padding-top: 20px;
+    padding-left: 100px;
+}
+.coming
+{
+    font-family: cursive;
+    color: white;
+    font-size: 30px;
+    padding-left: 200px;
+    
+}
+
+
+/*clock*/
+#countdown p {
+  text-align: center;
+  padding-left: 80vw;
+  margin-bottom: 0px;
+  font-size: 2rem;
+  color: white;
+  
+}
+#countdown .canvas-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 440px;
+  margin: 0 auto;
+  color: white;
+  height: 0px;
+  margin-top: 0px;
+  padding-left: 80vw;
+  
+}
+
+@media (max-width:500px){
+  #countdown .canvas-container { max-width: 220px; }
+  #countdown canvas:nth-child(-n+2) { margin-bottom: 10px; }
+}
+
+.clock
+{
+    width: 10%;
+    height: 0%;
+}
+
+.days
+{
+    font: sans-serif;
+    color: white;
+    font-size: 20px;
+    padding-left: 8.5vw;
+}
+.pdf
+{
+    padding-left: 8.5vw;
+}
+      </style>
+     <body>
+            <div class="backtheme"> 
+     <header class="menu">
+              <div class="nav"> 
+              <table width="100%">
+                  <tr>
+                      <td class="logo1" width="5%"><img src="qridelogo.png" width="150" height="50"></td>
+                      
+                        <td style="padding-left: 35vw;">
+                  <table width="100%">
+                      <tr>
+                      <h1 class="coming"><strong>Coming soon...</strong></h1>
+                         <td class="clock">
+                    <div class="coming" id="countdown" data-minutes-left="20" data-reset-delay="5">
+                    <div class="canvas-container" >
+                    <canvas id="days"></canvas>
+                    <canvas id="hours"></canvas>
+                    <canvas id="minutes"></canvas>
+                    <canvas id="seconds"></canvas>
+                     </div>
+                     </div>
+                          </td>
+                        
+                       </tr>
+                  </table>
+                  </td>
+                  
+                  </tr>
+              </table>
+                </div>
+                <form>
+                <div class="designlogin">
+                    <h1><img src="offer.png"></h1>
+                </div>
+            </form>
+          </header>
+  
+           <div class="sideheading">
+               <div class="chotu">
+                   <div class="chotusebhichotu">
+                       <p class="textstyle">Let's make this your least<br> expensive journey ever.. </p>
+                       <p class="textstyle1">Share your travel costs with our community.
+                       </p>
+                   
+                      <div class="canvas-container" >
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <canvas id="days"></canvas>
+                    <canvas id="hours"></canvas>
+                    <canvas id="minutes"></canvas>
+                    <canvas id="seconds"></canvas>
+                     </div>
+                       <h1 class="days">Days &nbsp; &nbsp; Hours &nbsp; &nbsp; Minute &nbsp; &nbsp; Second</h1>
+                     </div>
+               </div>
+                  <h1 class="pdf"> <iframe src="carpoolfinal.pdf">
+    </iframe></h1>
+                   </div>
+                   
+           </div>
+       </div>
+         
+         
+         
+                     <script>
+        
+var countdown = document.getElementById('countdown');
+var endDate = countdown.dataset.date || '2019-10-25';
+var endTime = countdown.dataset.time || '00:00:00';
+var endCountdown = new Date(endDate + 'T' + endTime);
+var timer;
+var specs = {
+  'radius': 40,
+  'centerX': 40,
+  'centerY': 40,
+  'thickness': 0,
+  'offset': -Math.PI/2,
+  'color': '#f00',
+  'bgColor': '#ccc',
+  'idFont': 'small-caps 400 10px Verdana',
+  'valueFont': 'bold 40px monospace',
+  'fontColor': '#ffffff'
+};
+var time = {
+  'millisecond': 1000,
+  'second': 60,
+  'minute': 60,
+  'hour': 24,
+  'day': 365
+}
+var info = {};
+
+
+// canvas init
+var canvasElements = Array.prototype.slice.call(document.querySelectorAll('canvas'));
+var canvasCtx = [];
+canvasElements.forEach( function(canvas, index) {
+  canvas.width = specs.centerX * 2;
+  canvas.height = specs.centerY * 2;
+  canvasCtx[index] = canvas.getContext('2d');
+  var name = canvas.id;
+  info[name] = {'ctx': index, 'value': 0, 'prevValue': -1};
+});
+var canvasKeys = Object.keys(info);
+info.days.denominator = time.day;
+info.hours.denominator = time.hour;
+info.minutes.denominator = time.minute;
+info.seconds.denominator = time.second;
+
+// show remaining time
+function showRemainingTime() {
+  var now = new Date();
+  
+  // calculate new values
+  var secondsLeft = Math.max(0, Math.floor((endCountdown - now)/1000));
+  info.days.value = Math.floor(secondsLeft / (time.second*time.minute*time.hour));
+  info.hours.value = Math.floor((secondsLeft % (time.second*time.minute*time.hour)) / (time.second*time.minute));
+  info.minutes.value = Math.floor((secondsLeft % (time.second*time.minute)) / time.second);
+  info.seconds.value = Math.floor(secondsLeft % time.second);
+  
+  // update changed values only
+  canvasKeys.forEach( function(key) {
+    if(info[key].value !== info[key].prevValue){
+      if(key === 'days' && info[key].value > 365) {
+        // exception if days is more than 1 year
+        draw(canvasCtx[info[key].ctx], 1, key, info[key].value);
+      } else {
+        draw(canvasCtx[info[key].ctx], info[key].value/info[key].denominator, key, info[key].value);
+      }
+      info[key].prevValue = info[key].value;
+    }
+  });
+}
+
+// draw function
+function draw(ctx, part, id, value) {
+  // calculate angles
+  var start = specs.offset;
+  var between = 2 * Math.PI * part + specs.offset;
+  var end = 2 * Math.PI + specs.offset;
+  
+  // clear canvas
+  ctx.clearRect(0, 0, specs.centerX * 2, specs.centerY * 2);
+  
+  // draw remaining %
+  ctx.fillStyle = specs.color;
+  ctx.beginPath();
+  ctx.arc(specs.centerX, specs.centerY, specs.radius, start, between);
+  ctx.arc(specs.centerX, specs.centerY, specs.radius - specs.thickness, between, start, true);
+  ctx.closePath();
+  ctx.fill();
+
+  // draw bg
+  ctx.fillStyle = specs.bgColor;
+  ctx.beginPath();
+  ctx.arc(specs.centerX, specs.centerY, specs.radius, between, end);
+  ctx.arc(specs.centerX, specs.centerY, specs.radius - specs.thickness, end, between, true);
+  ctx.closePath();
+  ctx.fill();
+  
+  // draw text
+  ctx.fillStyle = specs.fontColor;
+  ctx.font = specs.idFont;
+  ctx.fillText(id, specs.radius - ctx.measureText(id).width/2, specs.thickness*3);
+  ctx.font = specs.valueFont;
+  ctx.fillText(value, specs.radius - ctx.measureText(value).width/2, specs.radius*2 - specs.thickness*3);
+}
+
+// change countdown every second
+timer = setInterval(showRemainingTime, 1000);
+        
+   </script>
+         
+     </body>
+</html>
+
+
+

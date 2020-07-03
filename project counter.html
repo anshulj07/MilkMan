@@ -1,0 +1,138 @@
+<html>
+<style>
+body{
+  background:#eee;
+}
+.wrap{
+/*   position:absolute;
+  top:50%;
+  left:50%;
+  margin-top:-10px;
+  margin-left:-10px; */
+
+}
+.wrap > .big-ball{
+  position:absolute;
+  height:20px;width:20px;
+  background:#3949AB;
+  border-radius:50%;
+  top:50%;
+  margin-left:-10px;
+  display:flex;
+  z-index:9999;
+    animation: move .9s infinite;
+}
+.wrap > .small-balls {
+  display:flex;
+  
+
+}
+.wrap > .small-balls > .small-ball{
+   position:absolute;
+  height:20px;width:20px;
+  background:#d58c56;
+  border-radius:50%;
+  top:40%;
+  left:50%;
+  opacity:1;
+  z-index:2222;
+  margin-left:-10px;
+/*    animation: sm .9s infinite; */
+/*   animation-delay: .9s; */
+}
+.ball-shadow{
+ position: absolute;
+    top: 61%;
+    left: 0px;
+    right: 0;
+    background: #a59f9f;
+    height: 20px;
+    width: 3px;
+    border-radius: 50%;
+    transform: rotateX(100deg);
+    animation: shadow .9s infinite;
+    margin: 0 auto;
+    -webkit-font-smoothing: antialiased;
+}
+@keyframes move {
+    0%   {top: 50%; left: 50%;}
+    50%  {top: 60%; left: 50%; }
+    100% {top: 40%; left: 50%;}
+}
+@keyframes shadow {
+    0%   {width: 10px;}
+    50%  {width: 20px; }
+    100% {width: 10px;}
+}
+@keyframes sm {
+     0%   {opacity:0;}
+    100% {opacity:1}
+}
+
+.sb1{
+   animation: s1m .9s infinite;
+  animation-delay:.9s;
+}
+@keyframes s1m {
+     0%   {margin-left:-10px;}
+  50%{ margin-left:40px;}
+    100% {margin-left:-10px;}
+}
+
+.sb2{
+   animation: s2m .9s infinite;
+  animation-delay:.9s;
+}
+@keyframes s2m {
+     0%   {margin-left:-10px;}
+  50%{ margin-left:-50px;}
+    100% {margin-left:-10px;}
+}
+.sb3{
+/*    animation: s2m .9s infinite; */
+  animation-delay:.9s;
+}
+@keyframes s3m {
+     0%   {margin-left:-10px;}
+  50%{ margin-left:-50px;}
+    100% {margin-left:-10px;}
+}
+
+.sb4{
+   animation: s4m .9s infinite;
+  animation-delay:.9s;
+}
+@keyframes s4m {
+     0%   {margin-left:-10px;}
+  50%{ margin-left:-90px;}
+    100% {margin-left:-10px;}
+}
+.sb5{
+   animation: s5m .9s infinite;
+  animation-delay:.9s;
+}
+@keyframes s5m {
+     0%   {margin-left:-10px;}
+  50%{ margin-left:90px;}
+    100% {margin-left:-10px;}
+}
+</style>
+<body>
+
+    <div class="wrap">
+  <div class="big-ball">
+    
+  </div>
+  <div class="small-balls">
+    <div class="small-ball sb1"></div>
+    <div class="small-ball sb2"></div>
+    <div class="small-ball sb3"></div>
+    <div class="small-ball sb4"></div>
+    <div class="small-ball sb5"></div>
+    
+  </div>
+  
+</div>
+<div class="ball-shadow"></div>
+</body>
+</html>

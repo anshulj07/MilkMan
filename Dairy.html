@@ -1,0 +1,544 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        body {
+    margin: 0;
+    background: url('../img/paper.jpg') no-repeat;
+    background-size: cover;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.backtheme {
+    width: 100%;
+    margin: 0;
+}
+
+.logo {
+    width: 100%;
+    font-family: cursive;
+    padding: 10px;
+}
+
+   .logo1 {
+            padding-left: 50px;
+        }
+
+.tag {
+    color: white;
+}
+
+.menutheme {
+    font-family: arial;
+    font-size: 15px;
+    color: white;
+    text-align: center;
+    width: 20%;
+    background-color: rgba(255, 255, 255, 1);
+
+}
+
+/*.menutheme:hover {
+    background-color: rgba(0, 0, 0, 0);
+
+}*/
+
+a {
+    text-decoration: none;
+}
+
+.backtheme {
+    background-color: white;
+    height: 1000;
+}
+
+.Productdesign {
+    text-align: center;
+    font: cursive;
+    font-size: 25px;
+}
+
+.big {
+    width: 100%;
+    float: left;
+    padding: 30px 0px;
+}
+
+.small {
+    width: 25%;
+    color: rgba(0, 0, 0, 1);
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    float: left;
+    position: relative;
+    margin-top: 50px;
+}
+
+.small:hover {
+    color: white;
+    background: #000;
+}
+
+.sabsesmall {
+    text-align: center;
+}
+
+.sabsesmall img {
+    height: 140px;
+    width: auto;
+}
+
+.sabsesmall1 {
+    text-align: center;
+    font-family: cursive;
+    font-size: 10px;
+}
+
+.Heading {
+    text-align: center;
+}
+
+.Heading1 {
+    padding-top: 15px;
+    padding-left: 20px
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+    padding: 20px;
+}
+
+.overlay1 {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+    padding-left: 450px;
+}
+
+.overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.overlay1:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.popup {
+    margin: 70px auto;
+    padding: 50px;
+    background: #fff;
+    border-radius: 5px;
+    width: 30%;
+    position: relative;
+    transition: all 5s ease-in-out;
+}
+
+.popup1 {
+    margin: 70px auto;
+    padding-left: 30px;
+    background: #fff;
+    border-radius: 5px;
+    width: 40%;
+    position: relative;
+    transition: all 5s ease-in-out;
+}
+
+
+.popup1 .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+}
+
+.popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+}
+
+.popup .close:hover {
+    color: #06D85F;
+}
+
+.popup .content {
+    max-height: 30%;
+    overflow: auto;
+}
+
+.popup1 .close:hover {
+    color: #06D85F;
+}
+
+.popup1  {
+    max-height: 70%;
+    overflow: auto;
+   
+}
+
+.content
+{
+    padding-left: 50px;
+    
+}
+
+.shopping {
+    font-family: arial;
+    padding-left: 40px;
+    font-size: 15px;
+}
+
+.myform {
+    border: 1px dotted #ccc;
+}
+
+.qty {
+    width: 40px;
+    height: 25px;
+    text-align: center;
+
+}
+
+input.qtyplus {
+    width: 25px;
+    height: 25px;
+}
+
+input.qtyminus {
+    width: 25px;
+    height: 25px;
+}
+
+.addtocart {
+    font-family: arial;
+    font-size: 15px;
+    color: chocolate;
+    padding-left: 10px;
+    text-align: left;
+    /*    float: left;*/
+}
+
+.submitbutton {
+    border-radius: 2px;
+    color: #fff;
+    background: #10609e;
+    font-size: 15px;
+    width: 250px;
+    /*        padding: 200px 45px;*/
+    padding-left: 25%;
+    border: none;
+}
+
+.submitbutton:hover {
+    /*    color: #06D85F;*/
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.sellerform {
+    font-family: arial;
+    font-size: 20px;
+
+}
+
+.inputfield {
+    width: 280px;
+    box-shadow: none;
+    background-color: transparent;
+    padding: 10px;
+    border: 1px solid #dfdfdf;
+}
+
+.submitbutton1 {
+    border-radius: 2px;
+    color: #fff;
+    background: #10609e;
+    font-size: 15px;
+    width: 250px;
+    padding: 12px 45px;
+    border: none;
+
+}
+
+
+
+
+
+
+
+
+
+.myform {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.value-button {
+    display: inline-block;
+    border: 1px solid #ddd;
+    margin: 0px;
+    width: 40px;
+    height: 25px;
+    line-height: 23px;
+    text-align: center;
+    vertical-align: middle;
+    background: #eee;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.value-button:hover {
+    cursor: pointer;
+    color: black;
+}
+
+.myform .decrease {
+    margin-right: -4px;
+    border-radius: 8px 0 0 8px;
+}
+
+.myform .increase {
+    margin-left: -4px;
+    border-radius: 0 8px 8px 0;
+}
+
+.myform #input-wrap {
+    margin: 0px;
+    padding: 0px;
+}
+
+input.number {
+    text-align: center;
+    border: none;
+    margin: 0px;
+    width: 40px;
+    height: 25px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+    </style>
+<head>
+    <meta charset="utf-8">
+    <title>Milkman</title>
+    <link rel="stylesheet" media="all" href="css/product.css" />
+</head>
+
+<body>
+    <div class="backtheme">
+
+        <header class="logo">
+            <div class='colorback'>
+                <table width="100%">
+                    <tr>
+                         <td class="logo1" width="5%"><img src="logo.png"></td>
+                        <td style="padding-left: 35vw;">
+                            <table  width="100%">
+                                <tr align="center">
+                    <td class="menutheme"><a href="home.html"><b>Home</b></a></td>
+<!--                    <td class ="menutheme" width="20%"><a href="#"><b>About</b></a></td>-->
+                    <td class="menutheme"><a href="product.html"><b>Product</b></a></td>
+                    <td class="menutheme"><a href="#"><b>Schedule</b></a></td>
+                    <td class="menutheme"><a href="Login.html"><b>Login</b></a></td>
+                                </tr>
+                            </table>
+                        </td>
+                        </tr>
+                </table>
+            </div>
+        </header>
+       
+
+        <div class='big'>
+            <h1 class='Productdesign'>Products</h1>
+            <div class='small'>
+                <div class='sabsesmall'><img src="taaza.png"></div>
+                <div class='sabsesmall1'>
+                    <h1>Amul Taaza</h1>
+                </div>
+                <div class="myform">
+                    <a href='#popup1' class="addtocart" data-value="0">Add To Cart</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="value-button decrease" value="Decrease Value">-</div>
+                    <input type="number" class="number" value="0" />
+                    <div class="value-button increase" value="Increase Value">+</div>
+                </div>
+            </div>
+
+            <div class='small'>
+                <div class='sabsesmall'><a href='#'><img src="lassi.jpg"></a></div>
+                <div class='sabsesmall1'>
+                    <h1>Amul Lassi</h1>
+                </div>
+                <div class="myform">
+                    <a href='#popup1' class="addtocart" data-value="0">Add To Cart</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="value-button decrease" value="Decrease Value">-</div>
+                    <input type="number" class="number" value="0" />
+                    <div class="value-button increase" value="Increase Value">+</div>
+                </div>
+            </div>
+
+            <div class='small'>
+                <div class='sabsesmall'><a href='#'><img src='Dahi.jpg'></a></div>
+                <div class='sabsesmall1'>
+                    <h1>Govind Dahi</h1>
+                </div>
+                <div class="myform">
+                    <a href='#popup1' class="addtocart" data-value="0">Add To Cart</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="value-button decrease" value="Decrease Value">-</div>
+                    <input type="number" class="number" value="0" />
+                    <div class="value-button increase" value="Increase Value">+</div>
+                </div>
+            </div>
+
+            <div class='small'>
+                <div class='sabsesmall'><a href='#'><img src='Shrikhand.jpg'></a></div>
+                <div class='sabsesmall1'>
+                    <h1>Govind Shrikhand</h1>
+                </div>
+                <div class="myform">
+                    <a href='#popup1' class="addtocart" data-value="0">Add To Cart</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="value-button decrease" value="Decrease Value">-</div>
+                    <input type="number" class="number" value="0" />
+                    <div class="value-button increase" value="Increase Value">+</div>
+                </div>
+            </div>
+
+            <div class='small'>
+                <div class='sabsesmall'><a href='#'><img src='gold.png'></a></div>
+                <div class='sabsesmall1'>
+                    <h1>Amul Gold</h1>
+                </div>
+                <div class="myform">
+                    <a href='#popup1' class="addtocart" data-value="0">Add To Cart</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="value-button decrease" value="Decrease Value">-</div>
+                    <input type="number" class="number" value="0" />
+                    <div class="value-button increase" value="Increase Value">+</div>
+                </div>
+            </div>
+
+            <div class='small'>
+                <div class='sabsesmall'><a href='#'><img src='ghee.jpg'></a></div>
+                <div class='sabsesmall1'>
+                    <h1>Ghee</h1>
+                </div>
+                <div class="myform">
+                    <a href='#popup1' class="addtocart" data-value="0">Add To Cart</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="value-button decrease" value="Decrease Value">-</div>
+                    <input type="number" class="number" value="0" />
+                    <div class="value-button increase" value="Increase Value">+</div>
+                </div>
+            </div>
+
+            <div class='small'>
+                <div class='sabsesmall'><a href='#'><img src='butter.jpeg'></a></div>
+                <div class='sabsesmall1'>
+                    <h1>Amul Butter</h1>
+                </div>
+                <div class="myform">
+                    <a href='#popup1' class="addtocart" data-value="0">Add To Cart</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="value-button decrease" value="Decrease Value">-</div>
+                    <input type="number" class="number" value="0" />
+                    <div class="value-button increase" value="Increase Value">+</div>
+                </div>
+            </div>
+
+            <div class='small'>
+                <div class='sabsesmall'><a href='#'><img src='cheese.jpeg'></a></div>
+                <div class='sabsesmall1'>
+                    <h1>Mozzarella Cheese</h1>
+                </div>
+                <div class="myform">
+                    <a href='#popup1' class="addtocart" data-value="0">Add To Cart</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="value-button decrease" value="Decrease Value">-</div>
+                    <input type="number" class="number" value="0" />
+                    <div class="value-button increase" value="Increase Value">+</div>
+                </div>
+            </div>
+            </div>
+
+
+            <div id="popup1" class="overlay">
+                <div class="popup">
+                    <h2 class='Heading'>Product Added to Cart</h2>
+                    <a class="close" href="#">&times;</a>
+                    <div class="content">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input class='loginbutton' type='submit' value='Proceed To Payment'>
+                        <h2 class="shopping"><a href="product.html">Continue Shopping > </a></h2>
+                    </div>
+                </div>
+            </div>
+
+            <div id="popup2" class="overlay1">
+                <div class="popup1">
+                    <h2 class='Heading1'>Become Seller at MilkMan</h2>
+                    <a class="close" href="#">&times;</a>
+                    <div class="content">
+                        <label class="sellerform">State</label><br>
+                        <input class="inputfield" type="text" placeholder="State" name="cityid1" required><br><br>
+
+                        <label class="sellerform">City</label><br>
+                        <input class="inputfield" type="text" placeholder="City" name="stateid1" required><br><br>
+
+                        <label class="sellerform">Shop Address</label><br>
+                        <input class="inputfield" type="text" placeholder="Shop Adress" name="address1" required><br><br>
+
+                        <label class="sellerform">Email</label><br>
+                        <input class="inputfield" type="text" placeholder="Shop Adress" name="address1" required><br><br>
+
+                        <label class="sellerform">Mobile Number</label><br>
+                        <input class="inputfield" type="text" placeholder="Mobile Number" name="mobile1" required><br><br>
+
+                        <label class="sellerform">Password</label><br>
+                        <input class="inputfield" type="password" placeholder="Password" name="address1" required><br><br>
+
+                        <label><input type="checkbox" required>I hereby declare all above information is correct</label><br><br>
+                        <input class="submitbutton1" type="submit" value="Search">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="application/javascript" src="main.js"></script>
+</body>
+
+</html>
